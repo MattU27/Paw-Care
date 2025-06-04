@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - PawCare Connect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/Logo.png" alt="PawCare Connect">
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="search-button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#" class="cart-button" aria-label="View cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </a>
+            <div class="user-dropdown">
+                <button class="user-dropdown-btn" aria-label="User menu" aria-expanded="false" aria-haspopup="true">
+                    <img src="../images/james-40k-celebrate-240303-1000x1500-LAL_social_watermark_1080x1350-1.avif" alt="LeBron" class="user-mini-avatar">
+                    <span>LeBron</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-dropdown-content">
+                    <a href="dashboard.html"><i class="fas fa-user"></i> My Dashboard</a>
+                    <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cartPopup">
+        <div class="cart-popup-content">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-cart" aria-label="Close cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <!-- Cart items will be added here dynamically -->
+                <div class="empty-cart-message">Your cart is empty</div>
+            </div>
+            <div class="cart-promo">
+                <p class="promo-title">Have a promo code?</p>
+                <div class="promo-input">
+                    <label for="promoCodeInput" class="visually-hidden">Promo code</label>
+                    <input type="text" id="promoCodeInput" placeholder="Enter code">
+                    <button id="applyPromoBtn">Apply</button>
+                </div>
+                <div class="first-buyer-discount">
+                    <i class="fas fa-tag discount-icon"></i>
+                    <span class="discount-text">First-time buyer? Click here for <strong>15% OFF</strong></span>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row" id="discountRow" style="display: none;">
+                    <span>Discount:</span>
+                    <span id="cartDiscount">$0.00</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <button class="btn primary-btn checkout-btn" id="checkoutBtn">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart Popup -->
+
+    <main class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="../images/james-40k-celebrate-240303-1000x1500-LAL_social_watermark_1080x1350-1.avif" alt="LeBron James">
+                </div>
+                <div class="user-info">
+                    <h3>LeBron James</h3>
+                    <p>Member since Oct 2023</p>
+                    <div class="user-status premium">Premium Member</div>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <ul>
+                    <li class="active"><a href="#overview"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#shop"><i class="fas fa-shopping-basket"></i> Shop</a></li>
+                    <li><a href="#vetcare"><i class="fas fa-stethoscope"></i> Book Vet Care</a></li>
+                    <li><a href="#my-pets"><i class="fas fa-paw"></i> My Pets</a></li>
+                    <li><a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                    <li><a href="#appointments"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
+                    <li><a href="#loyalty"><i class="fas fa-medal"></i> Loyalty Rewards</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="dashboard-help">
+                <h4>Need Help?</h4>
+                <p>Our support team is here for you</p>
+                <a href="contact.html" class="btn secondary-btn">Contact Support</a>
+            </div>
+        </aside>
+        
+        <div class="dashboard-content">
+            <section id="overview" class="dashboard-section active">
+                <div class="dashboard-header">
+                    <h1>Welcome Back, LeBron!</h1>
+                    <p>Here's a summary of your PawCare activities</p>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-bone"></i></div>
+                        <div class="stat-content">
+                            <h3>325</h3>
+                            <p>Loyalty Points</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Vet Visits</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                        <div class="stat-content">
+                            <h3>2</h3>
+                            <p>Saved Pets</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row">
+                    <div class="dashboard-card upcoming-appointments">
+                        <div class="card-header">
+                            <h2>Upcoming Appointments</h2>
+                            <a href="#appointments" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <div class="date">15</div>
+                                    <div class="month">Nov</div>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Annual Wellness Exam - Max</h4>
+                                    <p><i class="fas fa-clock"></i> 10:00 AM</p>
+                                    <p><i class="fas fa-user-md"></i> Dr. Johnson</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn secondary-btn">Reschedule</button>
+                                </div>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <div class="date">28</div>
+                                    <div class="month">Nov</div>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Grooming Session - Luna</h4>
+                                    <p><i class="fas fa-clock"></i> 2:30 PM</p>
+                                    <p><i class="fas fa-user"></i> Sarah (Groomer)</p>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn secondary-btn">Reschedule</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card recent-orders">
+                        <div class="card-header">
+                            <h2>Recent Orders</h2>
+                            <a href="#orders" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="../images/Royal Canin Adult Dog Food.png" alt="Dog Food">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Premium Dog Food</h4>
+                                    <p class="order-id">Order #1293</p>
+                                    <p class="order-date">Nov 2, 2023</p>
+                                </div>
+                                <div class="order-price">$49.99</div>
+                                <div class="order-status delivered">Delivered</div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHBldCUyMGJlZHx8MHx8fHwxNjk4NzMxNDcxfDA&ixlib=rb-4.0.3&q=80&w=100" alt="Pet Bed">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Pet Bed</h4>
+                                    <p class="order-id">Order #1287</p>
+                                    <p class="order-date">Oct 28, 2023</p>
+                                </div>
+                                <div class="order-price">$39.99</div>
+                                <div class="order-status shipped">Shipped</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row">
+                    <div class="dashboard-card pet-profiles">
+                        <div class="card-header">
+                            <h2>My Pets</h2>
+                            <a href="#my-pets" class="view-all">Manage Pets</a>
+                        </div>
+                        <div class="card-content pet-grid">
+                            <div class="pet-card">
+                                <div class="pet-image">
+                                    <img src="https://images.unsplash.com/photo-1587764379873-97837921fd44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZG9nfHx8fHx8MTY5ODc1MDQwMA&ixlib=rb-4.0.3&q=80&w=200" alt="Dog Max">
+                                    <button class="edit-pet-btn" aria-label="Edit Max"><i class="fas fa-edit"></i></button>
+                                </div>
+                                <div class="pet-info">
+                                    <h3>Max</h3>
+                                    <p>Golden Retriever - 3 years</p>
+                                    <div class="pet-badges">
+                                        <span class="pet-badge microchipped" title="Microchipped"><i class="fas fa-microchip"></i></span>
+                                        <span class="pet-badge vaccinated" title="Vaccinated"><i class="fas fa-syringe"></i></span>
+                                        <span class="pet-badge neutered" title="Neutered"><i class="fas fa-cut"></i></span>
+                                    </div>
+                                    <div class="pet-actions">
+                                        <button class="btn secondary-btn small">Health Records</button>
+                                        <button class="btn outline-btn small">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet-card">
+                                <div class="pet-image">
+                                    <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2F0fHx8fHx8MTY5ODc1MDUwMA&ixlib=rb-4.0.3&q=80&w=200" alt="Cat Luna">
+                                    <button class="edit-pet-btn" aria-label="Edit Luna"><i class="fas fa-edit"></i></button>
+                                </div>
+                                <div class="pet-info">
+                                    <h3>Luna</h3>
+                                    <p>Tabby Cat - 2 years</p>
+                                    <div class="pet-badges">
+                                        <span class="pet-badge microchipped" title="Microchipped"><i class="fas fa-microchip"></i></span>
+                                        <span class="pet-badge vaccinated" title="Vaccinated"><i class="fas fa-syringe"></i></span>
+                                        <span class="pet-badge spayed" title="Spayed"><i class="fas fa-cut"></i></span>
+                                    </div>
+                                    <div class="pet-actions">
+                                        <button class="btn secondary-btn small">Health Records</button>
+                                        <button class="btn outline-btn small">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pet-card add-pet">
+                                <div class="add-pet-content">
+                                    <div class="add-icon"><i class="fas fa-plus-circle"></i></div>
+                                    <p>Add New Pet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card loyalty-rewards">
+                        <div class="card-header">
+                            <h2>Loyalty Rewards</h2>
+                            <a href="#loyalty" class="view-all">View Rewards</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="loyalty-progress">
+                                <div class="progress-info">
+                                    <span>325 points</span>
+                                    <span>500 points</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%;"></div>
+                                </div>
+                                <p>You're 175 points away from a $20 discount!</p>
+                            </div>
+                            <div class="available-rewards">
+                                <h4>Available Rewards</h4>
+                                <ul class="rewards-list">
+                                    <li>
+                                        <div class="reward-info">
+                                            <i class="fas fa-gift"></i>
+                                            <span>Free shipping on your next order</span>
+                                        </div>
+                                        <button class="btn secondary-btn">Redeem (100 pts)</button>
+                                    </li>
+                                    <li>
+                                        <div class="reward-info">
+                                            <i class="fas fa-percentage"></i>
+                                            <span>10% off grooming services</span>
+                                        </div>
+                                        <button class="btn secondary-btn">Redeem (200 pts)</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-row">
+                    <div class="dashboard-card health-records">
+                        <div class="card-header">
+                            <h2>Health Records</h2>
+                            <a href="#healthRecordsSection" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="health-record-tabs">
+                                <button class="tab-btn active" data-pet="max" aria-label="View Max's records">Max</button>
+                                <button class="tab-btn" data-pet="luna" aria-label="View Luna's records">Luna</button>
+                            </div>
+                            <div class="health-record-content">
+                                <div class="health-record-item">
+                                    <div class="record-date">Oct 15, 2023</div>
+                                    <div class="record-details">
+                                        <h4>Annual Checkup</h4>
+                                        <p>Weight: 65 lbs - All vaccinations up to date</p>
+                                    </div>
+                                    <button class="btn secondary-btn small" aria-label="View annual checkup details">View Details</button>
+                                </div>
+                                <div class="health-record-item">
+                                    <div class="record-date">Jul 22, 2023</div>
+                                    <div class="record-details">
+                                        <h4>Dental Cleaning</h4>
+                                        <p>Regular cleaning - No issues found</p>
+                                    </div>
+                                    <button class="btn secondary-btn small" aria-label="View dental cleaning details">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card recommended">
+                        <div class="card-header">
+                            <h2>Recommended For You</h2>
+                            <a href="shop.html" class="view-all">Shop All</a>
+                        </div>
+                        <div class="card-content">
+                            <div class="product-slider">
+                                <div class="product-slide">
+                                    <div class="product-thumb">
+                                        <img src="../images/KONG Classic Toy Bundle.jpg" alt="Dog Toy">
+                                    </div>
+                                    <h4>Interactive Dog Toy</h4>
+                                    <p class="product-price">$14.99</p>
+                                    <button class="btn primary-btn small">Add to Cart</button>
+                                </div>
+                                <div class="product-slide">
+                                    <div class="product-thumb">
+                                        <img src="../images/Foods & Treats.png" alt="Dog Treats">
+                                    </div>
+                                    <h4>Organic Dog Treats</h4>
+                                    <p class="product-price">$9.99</p>
+                                    <button class="btn primary-btn small">Add to Cart</button>
+                                </div>
+                                <div class="product-slide">
+                                    <div class="product-thumb">
+                                        <img src="https://images.unsplash.com/photo-1516750105099-4b8a83e217ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2F0X3RveXx8fHx8fDE2OTg3NTA3MDA&ixlibrb-4.0.3&q=80&w=150" alt="Cat Toy">
+                                    </div>
+                                    <h4>Catnip Mouse Toy</h4>
+                                    <p class="product-price">$7.99</p>
+                                    <button class="btn primary-btn small">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Additional dashboard sections would be defined here but hidden by default -->
+            <!-- Only the overview section is fully implemented for this example -->
+            <section id="my-pets" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>My Pets</h1>
+                    <button class="btn primary-btn" id="addNewPetBtn"><i class="fas fa-plus"></i> Add New Pet</button>
+                </div>
+                <p>Manage your pet profiles and keep track of their health records.</p>
+                
+                <!-- Pet Management Section -->
+                <div class="pet-management">
+                    <!-- Add New Pet Form - Hidden by default -->
+                    <div class="add-pet-form" id="addPetForm" style="display: none;">
+                        <h3><i class="fas fa-plus-circle"></i> Add New Pet</h3>
+                        <form class="pet-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pet-name">Pet Name*</label>
+                                    <input type="text" id="pet-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pet-type">Pet Type*</label>
+                                    <select id="pet-type" class="form-control" required>
+                                        <option value="">Select pet type</option>
+                                        <option value="dog">Dog</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="bird">Bird</option>
+                                        <option value="fish">Fish</option>
+                                        <option value="reptile">Reptile</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pet-breed">Breed</label>
+                                    <input type="text" id="pet-breed" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pet-age">Age</label>
+                                    <div class="age-input-group">
+                                        <input type="number" id="pet-age" class="form-control" min="0">
+                                        <select id="pet-age-unit" class="form-control">
+                                            <option value="years">Years</option>
+                                            <option value="months">Months</option>
+                                            <option value="weeks">Weeks</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pet-gender">Gender</label>
+                                    <select id="pet-gender" class="form-control">
+                                        <option value="">Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="unknown">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pet-weight">Weight (lbs)</label>
+                                    <input type="number" id="pet-weight" class="form-control" min="0" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pet-photo">Pet Photo</label>
+                                <div class="file-upload">
+                                    <input type="file" id="pet-photo" accept="image/*">
+                                    <label for="pet-photo" class="file-upload-btn">
+                                        <i class="fas fa-cloud-upload-alt"></i> Choose Photo
+                                    </label>
+                                    <span class="file-name">No file chosen</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pet-description">Description</label>
+                                <textarea id="pet-description" class="form-control" rows="3" placeholder="Tell us about your pet's personality, likes, and dislikes."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>Medical Information</legend>
+                                    <div class="medical-info-checks">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="pet-microchipped">
+                                            <label for="pet-microchipped">Microchipped</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="pet-spayed-neutered">
+                                            <label for="pet-spayed-neutered">Spayed/Neutered</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="pet-vaccinated">
+                                            <label for="pet-vaccinated">Vaccinations up to date</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn outline-btn" id="cancelAddPet">Cancel</button>
+                                <button type="submit" class="btn primary-btn">Save Pet</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Pet Grid -->
+                    <div class="pet-grid">
+                        <!-- Existing pets -->
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1587764379873-97837921fd44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8ZG9nfHx8fHx8MTY5ODc1MDQwMA&ixlib=rb-4.0.3&q=80&w=200" alt="Dog Max">
+                                <button class="edit-pet-btn" aria-label="Edit Max"><i class="fas fa-edit"></i></button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Max</h3>
+                                <p>Golden Retriever - 3 years</p>
+                                <div class="pet-badges">
+                                    <span class="pet-badge microchipped" title="Microchipped"><i class="fas fa-microchip"></i></span>
+                                    <span class="pet-badge vaccinated" title="Vaccinated"><i class="fas fa-syringe"></i></span>
+                                    <span class="pet-badge neutered" title="Neutered"><i class="fas fa-cut"></i></span>
+                                </div>
+                                <div class="pet-actions">
+                                    <button class="btn secondary-btn small">Health Records</button>
+                                    <button class="btn outline-btn small">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2F0fHx8fHx8MTY5ODc1MDUwMA&ixlib=rb-4.0.3&q=80&w=200" alt="Cat Luna">
+                                <button class="edit-pet-btn" aria-label="Edit Luna"><i class="fas fa-edit"></i></button>
+                            </div>
+                            <div class="pet-info">
+                                <h3>Luna</h3>
+                                <p>Tabby Cat - 2 years</p>
+                                <div class="pet-badges">
+                                    <span class="pet-badge microchipped" title="Microchipped"><i class="fas fa-microchip"></i></span>
+                                    <span class="pet-badge vaccinated" title="Vaccinated"><i class="fas fa-syringe"></i></span>
+                                    <span class="pet-badge spayed" title="Spayed"><i class="fas fa-cut"></i></span>
+                                </div>
+                                <div class="pet-actions">
+                                    <button class="btn secondary-btn small">Health Records</button>
+                                    <button class="btn outline-btn small">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pet-card add-pet" id="addPetCard">
+                            <div class="add-pet-content">
+                                <div class="add-icon"><i class="fas fa-plus-circle"></i></div>
+                                <p>Add New Pet</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Health Records Section (expandable per pet) -->
+                    <div class="health-records-section" style="display: none;" id="healthRecordsSection">
+                        <div class="section-header">
+                            <h3><span id="petNameForRecords">Max</span>'s Health Records</h3>
+                            <button class="btn secondary-btn small" id="addHealthRecordBtn"><i class="fas fa-plus"></i> Add Record</button>
+                            <button class="close-section-btn" aria-label="Close health records section"><i class="fas fa-times"></i></button>
+                        </div>
+                        
+                        <div class="health-records-timeline">
+                            <div class="health-record">
+                                <div class="record-date">
+                                    <span class="day">15</span>
+                                    <span class="month">Oct</span>
+                                    <span class="year">2023</span>
+                                </div>
+                                <div class="record-content">
+                                    <h4>Annual Checkup</h4>
+                                    <p><strong>Veterinarian:</strong> Dr. Sarah Johnson</p>
+                                    <p><strong>Weight:</strong> 65 lbs</p>
+                                    <p><strong>Notes:</strong> All vaccinations up to date. Overall good health.</p>
+                                    <div class="record-actions">
+                                        <button class="btn outline-btn small">Edit</button>
+                                        <button class="btn outline-btn small remove-btn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="health-record">
+                                <div class="record-date">
+                                    <span class="day">22</span>
+                                    <span class="month">Jul</span>
+                                    <span class="year">2023</span>
+                                </div>
+                                <div class="record-content">
+                                    <h4>Dental Cleaning</h4>
+                                    <p><strong>Veterinarian:</strong> Dr. Michael Chen</p>
+                                    <p><strong>Weight:</strong> 64 lbs</p>
+                                    <p><strong>Notes:</strong> Regular cleaning - No issues found.</p>
+                                    <div class="record-actions">
+                                        <button class="btn outline-btn small">Edit</button>
+                                        <button class="btn outline-btn small remove-btn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orders" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Order History</h1>
+                    <div class="filter-actions">
+                        <label for="order-filter" class="visually-hidden">Filter orders</label>
+                        <select id="order-filter" class="filter-dropdown">
+                            <option value="all">All Orders</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                        <div class="search-box">
+                            <label for="order-search" class="visually-hidden">Search orders</label>
+                            <input type="text" id="order-search" placeholder="Search orders...">
+                            <button aria-label="Search"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="orders-container">
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-info">
+                                <h3>Order #1293</h3>
+                                <span class="order-date">Placed on Nov 2, 2023</span>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="../images/Royal Canin Adult Dog Food.png" alt="Dog Food">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Premium Dog Food</h4>
+                                    <div class="order-meta">
+                                        <span class="quantity">Qty: 1</span>
+                                        <span class="price">$49.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span class="total-price">$49.99</span>
+                            </div>
+                            <div class="order-actions">
+                                <button class="btn secondary-btn small">Track Order</button>
+                                <button class="btn primary-btn small">Buy Again</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-info">
+                                <h3>Order #1287</h3>
+                                <span class="order-date">Placed on Oct 28, 2023</span>
+                            </div>
+                            <div class="order-status shipped">Shipped</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHBldCUyMGJlZHx8MHx8fHwxNjk4NzMxNDcxfDA&ixlib=rb-4.0.3&q=80&w=100" alt="Pet Bed">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Pet Bed</h4>
+                                    <div class="order-meta">
+                                        <span class="quantity">Qty: 1</span>
+                                        <span class="price">$39.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="../images/KONG Classic Toy Bundle.jpg" alt="Pet Toy Bundle">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Pet Toy Bundle</h4>
+                                    <div class="order-meta">
+                                        <span class="quantity">Qty: 2</span>
+                                        <span class="price">$24.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span class="total-price">$89.97</span>
+                            </div>
+                            <div class="order-actions">
+                                <button class="btn secondary-btn small">Track Order</button>
+                                <button class="btn primary-btn small">Buy Again</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-info">
+                                <h3>Order #1265</h3>
+                                <span class="order-date">Placed on Oct 15, 2023</span>
+                            </div>
+                            <div class="order-status delivered">Delivered</div>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <div class="order-image">
+                                    <img src="https://images.unsplash.com/photo-1600369671236-e74521d4b6ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwdHJlYXRzfHwwfHx8fDE2OTg3MzEzODd8MA&ixlib=rb-4.0.3&q=80&w=100" alt="Cat Treats">
+                                </div>
+                                <div class="order-details">
+                                    <h4>Cat Treats</h4>
+                                    <div class="order-meta">
+                                        <span class="quantity">Qty: 3</span>
+                                        <span class="price">$14.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                <span>Total:</span>
+                                <span class="total-price">$44.97</span>
+                            </div>
+                            <div class="order-actions">
+                                <button class="btn secondary-btn small">View Details</button>
+                                <button class="btn primary-btn small">Buy Again</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="appointments" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>My Appointments</h1>
+                    <button class="btn primary-btn"><i class="fas fa-plus"></i> Book New Appointment</button>
+                </div>
+                
+                <div class="appointment-tabs">
+                    <button class="appointment-tab active">Upcoming</button>
+                    <button class="appointment-tab">Past</button>
+                    <button class="appointment-tab">Cancelled</button>
+                </div>
+                
+                <div class="appointments-container">
+                    <div class="appointment-card">
+                        <div class="appointment-date-large">
+                            <div class="month">Nov</div>
+                            <div class="day">15</div>
+                            <div class="time">10:00 AM</div>
+                        </div>
+                        <div class="appointment-content">
+                            <div class="appointment-header">
+                                <h3>Annual Wellness Exam - Max</h3>
+                                <div class="appointment-status confirmed">Confirmed</div>
+                            </div>
+                            <div class="appointment-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-md"></i>
+                                    <span>Dr. Sarah Johnson</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>PawCare Main Clinic</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-comment-alt"></i>
+                                    <span>Regular check-up and vaccination boosters</span>
+                                </div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn secondary-btn small"><i class="fas fa-calendar-alt"></i> Reschedule</button>
+                                <button class="btn outline-btn small"><i class="fas fa-times"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="appointment-card">
+                        <div class="appointment-date-large">
+                            <div class="month">Nov</div>
+                            <div class="day">28</div>
+                            <div class="time">2:30 PM</div>
+                        </div>
+                        <div class="appointment-content">
+                            <div class="appointment-header">
+                                <h3>Grooming Session - Luna</h3>
+                                <div class="appointment-status confirmed">Confirmed</div>
+                            </div>
+                            <div class="appointment-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Sarah (Groomer)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>PawCare Grooming Center</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-comment-alt"></i>
+                                    <span>Full grooming service including bath, haircut, and nail trimming</span>
+                                </div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn secondary-btn small"><i class="fas fa-calendar-alt"></i> Reschedule</button>
+                                <button class="btn outline-btn small"><i class="fas fa-times"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="appointment-card">
+                        <div class="appointment-date-large">
+                            <div class="month">Dec</div>
+                            <div class="day">12</div>
+                            <div class="time">3:15 PM</div>
+                        </div>
+                        <div class="appointment-content">
+                            <div class="appointment-header">
+                                <h3>Dental Cleaning - Max</h3>
+                                <div class="appointment-status pending">Pending</div>
+                            </div>
+                            <div class="appointment-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-user-md"></i>
+                                    <span>Dr. Michael Chen</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>PawCare Dental Care Unit</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-comment-alt"></i>
+                                    <span>Routine dental cleaning procedure</span>
+                                </div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn secondary-btn small"><i class="fas fa-check"></i> Confirm</button>
+                                <button class="btn outline-btn small"><i class="fas fa-times"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="loyalty" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Loyalty Program</h1>
+                </div>
+                
+                <div class="loyalty-container">
+                    <div class="loyalty-summary-card">
+                        <div class="loyalty-points-display">
+                            <div class="points-value">325</div>
+                            <div class="points-label">Loyalty Points</div>
+                        </div>
+                        <div class="loyalty-tier">
+                            <div class="tier-badge gold">Gold Member</div>
+                            <div class="tier-progress">
+                                <div class="tier-label">175 points until Platinum</div>
+                                <div class="tier-bar">
+                                    <div class="tier-progress-fill" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="points-summary">
+                            <div class="summary-item">
+                                <span class="label">Points Earned This Month</span>
+                                <span class="value">75</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Lifetime Points</span>
+                                <span class="value">1,240</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-row">
+                        <div class="dashboard-card available-rewards">
+                            <div class="card-header">
+                                <h2>Available Rewards</h2>
+                            </div>
+                            <div class="card-content">
+                                <div class="rewards-grid">
+                                    <div class="reward-card">
+                                        <div class="reward-icon">
+                                            <i class="fas fa-truck"></i>
+                                        </div>
+                                        <div class="reward-info">
+                                            <h4>Free Shipping</h4>
+                                            <p>On your next order</p>
+                                            <div class="points-required">100 points</div>
+                                        </div>
+                                        <button class="btn primary-btn">Redeem</button>
+                                    </div>
+                                    
+                                    <div class="reward-card">
+                                        <div class="reward-icon">
+                                            <i class="fas fa-percentage"></i>
+                                        </div>
+                                        <div class="reward-info">
+                                            <h4>10% Off Grooming</h4>
+                                            <p>Any grooming service</p>
+                                            <div class="points-required">200 points</div>
+                                        </div>
+                                        <button class="btn primary-btn">Redeem</button>
+                                    </div>
+                                    
+                                    <div class="reward-card">
+                                        <div class="reward-icon">
+                                            <i class="fas fa-gift"></i>
+                                        </div>
+                                        <div class="reward-info">
+                                            <h4>$20 Discount</h4>
+                                            <p>On orders over $100</p>
+                                            <div class="points-required">500 points</div>
+                                        </div>
+                                        <button class="btn secondary-btn disabled">Not Enough Points</button>
+                                    </div>
+                                    
+                                    <div class="reward-card">
+                                        <div class="reward-icon">
+                                            <i class="fas fa-bone"></i>
+                                        </div>
+                                        <div class="reward-info">
+                                            <h4>Free Toy</h4>
+                                            <p>With any purchase</p>
+                                            <div class="points-required">250 points</div>
+                                        </div>
+                                        <button class="btn primary-btn">Redeem</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card reward-history">
+                            <div class="card-header">
+                                <h2>Points History</h2>
+                            </div>
+                            <div class="card-content">
+                                <div class="history-list">
+                                    <div class="history-item earned">
+                                        <div class="history-content">
+                                            <h4>Order #1293</h4>
+                                            <p>Premium Dog Food purchase</p>
+                                        </div>
+                                        <div class="history-date">Nov 2, 2023</div>
+                                        <div class="history-points">+50 pts</div>
+                                    </div>
+                                    
+                                    <div class="history-item redeemed">
+                                        <div class="history-content">
+                                            <h4>Free Shipping Reward</h4>
+                                            <p>Reward redemption</p>
+                                        </div>
+                                        <div class="history-date">Oct 30, 2023</div>
+                                        <div class="history-points">-100 pts</div>
+                                    </div>
+                                    
+                                    <div class="history-item earned">
+                                        <div class="history-content">
+                                            <h4>Order #1287</h4>
+                                            <p>Multiple items purchase</p>
+                                        </div>
+                                        <div class="history-date">Oct 28, 2023</div>
+                                        <div class="history-points">+90 pts</div>
+                                    </div>
+                                    
+                                    <div class="history-item earned">
+                                        <div class="history-content">
+                                            <h4>Refer a Friend Bonus</h4>
+                                            <p>New customer referral</p>
+                                        </div>
+                                        <div class="history-date">Oct 20, 2023</div>
+                                        <div class="history-points">+100 pts</div>
+                                    </div>
+                                </div>
+                                <div class="view-more-link">
+                                    <a href="#">View Complete History <i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Account Settings</h1>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="settings-sidebar">
+                        <ul class="settings-menu">
+                            <li class="active" data-target="profile-settings">
+                                <i class="fas fa-user"></i> Profile Information
+                            </li>
+                            <li data-target="notification-settings">
+                                <i class="fas fa-bell"></i> Notifications
+                            </li>
+                            <li data-target="payment-settings">
+                                <i class="fas fa-credit-card"></i> Payment Methods
+                            </li>
+                            <li data-target="address-settings">
+                                <i class="fas fa-map-marker-alt"></i> Addresses
+                            </li>
+                            <li data-target="password-settings">
+                                <i class="fas fa-lock"></i> Password & Security
+                            </li>
+                            <li data-target="theme-settings">
+                                <i class="fas fa-paint-brush"></i> Theme & Appearance
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <div id="profile-settings" class="settings-panel active">
+                            <h2><i class="fas fa-user"></i> Profile Information</h2>
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="profile-avatar">Profile Picture</label>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            <img src="../images/james-40k-celebrate-240303-1000x1500-LAL_social_watermark_1080x1350-1.avif" alt="Profile Picture">
+                                        </div>
+                                        <div class="avatar-edit">
+                                            <button type="button" class="btn secondary-btn">Change Photo</button>
+                                            <button type="button" class="btn outline-btn">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" id="first-name" name="first-name" value="LeBron" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" id="last-name" name="last-name" value="James" class="form-control">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" value="lebron@example.com" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" value="(555) 123-4567" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bio">Bio</label>
+                                    <textarea id="bio" name="bio" rows="4" class="form-control">Pet lover and proud parent of two furry friends!</textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn outline-btn">Cancel</button>
+                                    <button type="submit" class="btn primary-btn">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div id="notification-settings" class="settings-panel">
+                            <h2><i class="fas fa-bell"></i> Notifications</h2>
+                            <div class="notification-options">
+                                <div class="notification-group">
+                                    <h3>Email Notifications</h3>
+                                    <div class="notification-option">
+                                        <div class="option-content">
+                                            <strong>Order Updates</strong>
+                                            <p>Receive updates about your orders</p>
+                                        </div>
+                                        <label class="switch" for="email-order-updates">
+                                            <input type="checkbox" id="email-order-updates" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="notification-option">
+                                        <div class="option-content">
+                                            <strong>Appointment Reminders</strong>
+                                            <p>Remind me about upcoming vet appointments</p>
+                                        </div>
+                                        <label class="switch" for="email-appointment-reminders">
+                                            <input type="checkbox" id="email-appointment-reminders" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="notification-option">
+                                        <div class="option-content">
+                                            <strong>Special Offers</strong>
+                                            <p>Notify me about promotions and discounts</p>
+                                        </div>
+                                        <label class="switch" for="email-special-offers">
+                                            <input type="checkbox" id="email-special-offers">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="notification-group">
+                                    <h3>Push Notifications</h3>
+                                    <div class="notification-option">
+                                        <div class="option-content">
+                                            <strong>Order Status</strong>
+                                            <p>Notify me when order status changes</p>
+                                        </div>
+                                        <label class="switch" for="push-order-status">
+                                            <input type="checkbox" id="push-order-status" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="notification-option">
+                                        <div class="option-content">
+                                            <strong>Appointment Alerts</strong>
+                                            <p>Send reminders 24 hours before appointments</p>
+                                        </div>
+                                        <label class="switch" for="push-appointment-alerts">
+                                            <input type="checkbox" id="push-appointment-alerts" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn primary-btn">Save Preferences</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="payment-settings" class="settings-panel">
+                            <h2><i class="fas fa-credit-card"></i> Payment Methods</h2>
+                            <div class="payment-methods">
+                                <div class="payment-method">
+                                    <div class="payment-card visa">
+                                        <div class="card-details">
+                                            <div class="card-type"><i class="fab fa-cc-visa"></i> Visa ending in 4242</div>
+                                            <div class="card-info">Expiry: 09/25</div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <span class="default-badge">Default</span>
+                                            <button class="btn secondary-btn small">Edit</button>
+                                            <button class="btn outline-btn small remove-btn">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-method">
+                                    <div class="payment-card mastercard">
+                                        <div class="card-details">
+                                            <div class="card-type"><i class="fab fa-cc-mastercard"></i> Mastercard ending in 8888</div>
+                                            <div class="card-info">Expiry: 12/24</div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <button class="btn secondary-btn small">Make Default</button>
+                                            <button class="btn secondary-btn small">Edit</button>
+                                            <button class="btn outline-btn small remove-btn">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="add-payment-method">
+                                    <button class="btn primary-btn">
+                                        <i class="fas fa-plus"></i> Add Payment Method
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="address-settings" class="settings-panel">
+                            <h2><i class="fas fa-map-marker-alt"></i> Addresses</h2>
+                            <div class="address-list">
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <h3>Home Address <span class="default-badge">Default</span></h3>
+                                        <p>LeBron James<br>
+                                        123 Basketball St<br>
+                                        Los Angeles, CA 90001<br>
+                                        United States<br>
+                                        Phone: (555) 123-4567</p>
+                                    </div>
+                                    <div class="address-actions">
+                                        <button class="btn secondary-btn small">Edit</button>
+                                        <button class="btn outline-btn small remove-btn">Remove</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="address-item">
+                                    <div class="address-details">
+                                        <h3>Office Address</h3>
+                                        <p>LeBron James<br>
+                                        456 Lakers Blvd<br>
+                                        Los Angeles, CA 90002<br>
+                                        United States<br>
+                                        Phone: (555) 987-6543</p>
+                                    </div>
+                                    <div class="address-actions">
+                                        <button class="btn secondary-btn small">Make Default</button>
+                                        <button class="btn secondary-btn small">Edit</button>
+                                        <button class="btn outline-btn small remove-btn">Remove</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="add-address">
+                                    <button class="btn primary-btn">
+                                        <i class="fas fa-plus"></i> Add New Address
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="password-settings" class="settings-panel">
+                            <h2><i class="fas fa-lock"></i> Password & Security</h2>
+                            <form class="settings-form">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password</label>
+                                    <input type="password" id="current-password" name="current-password" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" id="new-password" name="new-password" class="form-control">
+                                    <div class="password-strength">
+                                        <div class="strength-meter">
+                                            <div class="strength-segment"></div>
+                                            <div class="strength-segment"></div>
+                                            <div class="strength-segment"></div>
+                                            <div class="strength-segment"></div>
+                                        </div>
+                                        <span class="strength-text">Password strength: Choose a password</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm New Password</label>
+                                    <input type="password" id="confirm-password" name="confirm-password" class="form-control">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn outline-btn">Cancel</button>
+                                    <button type="submit" class="btn primary-btn">Update Password</button>
+                                </div>
+                            </form>
+                            
+                            <div class="security-options">
+                                <h3>Two-Factor Authentication</h3>
+                                <div class="security-option">
+                                    <div class="option-content">
+                                        <strong>Enable Two-Factor Authentication</strong>
+                                        <p>Add an extra layer of security to your account</p>
+                                    </div>
+                                    <label class="switch" for="two-factor-auth">
+                                        <input type="checkbox" id="two-factor-auth">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="theme-settings" class="settings-panel">
+                            <h2><i class="fas fa-paint-brush"></i> Theme & Appearance</h2>
+                            <div class="theme-options">
+                                <div class="theme-option">
+                                    <h3>Theme Mode</h3>
+                                    <div class="theme-selectors">
+                                        <div class="theme-selector light active">
+                                            <div class="theme-preview light-theme"></div>
+                                            <span>Light</span>
+                                        </div>
+                                        <div class="theme-selector dark">
+                                            <div class="theme-preview dark-theme"></div>
+                                            <span>Dark</span>
+                                        </div>
+                                        <div class="theme-selector system">
+                                            <div class="theme-preview system-theme"></div>
+                                            <span>System</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="theme-option">
+                                    <fieldset>
+                                        <legend>Color Accent</legend>
+                                        <div class="color-options">
+                                            <label class="color-option active" for="color-blue">
+                                                <input type="radio" id="color-blue" name="color-accent" checked>
+                                                <span class="color-circle blue"></span>
+                                            </label>
+                                            <label class="color-option" for="color-purple">
+                                                <input type="radio" id="color-purple" name="color-accent">
+                                                <span class="color-circle purple"></span>
+                                            </label>
+                                            <label class="color-option" for="color-teal">
+                                                <input type="radio" id="color-teal" name="color-accent">
+                                                <span class="color-circle teal"></span>
+                                            </label>
+                                            <label class="color-option" for="color-orange">
+                                                <input type="radio" id="color-orange" name="color-accent">
+                                                <span class="color-circle orange"></span>
+                                            </label>
+                                            <label class="color-option" for="color-green">
+                                                <input type="radio" id="color-green" name="color-accent">
+                                                <span class="color-circle green"></span>
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <h3>Color Accent</h3>
+                                    <div class="color-options">
+                                        <label class="color-option active">
+                                            <input type="radio" name="color-accent" checked>
+                                            <span class="color-circle blue"></span>
+                                        </label>
+                                        <label class="color-option">
+                                            <input type="radio" name="color-accent">
+                                            <span class="color-circle purple"></span>
+                                        </label>
+                                        <label class="color-option">
+                                            <input type="radio" name="color-accent">
+                                            <span class="color-circle teal"></span>
+                                        </label>
+                                        <label class="color-option">
+                                            <input type="radio" name="color-accent">
+                                            <span class="color-circle orange"></span>
+                                        </label>
+                                        <label class="color-option">
+                                            <input type="radio" name="color-accent">
+                                            <span class="color-circle green"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn primary-btn">Save Preferences</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop Section (Added to Dashboard) -->
+            <section id="shop" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Shop</h1>
+                    <div class="shop-search">
+                        <label for="product-search" class="visually-hidden">Search products</label>
+                        <input type="text" id="product-search" placeholder="Search products..." class="form-control">
+                        <button type="button" aria-label="Search products"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Category Navigation -->
+                <div class="shop-categories">
+                    <button class="category-pill active" aria-label="Show all products">All Products</button>
+                    <button class="category-pill" aria-label="Show food and treats">Food & Treats</button>
+                    <button class="category-pill" aria-label="Show toys">Toys</button>
+                    <button class="category-pill" aria-label="Show health products">Health</button>
+                    <button class="category-pill" aria-label="Show accessories">Accessories</button>
+                    <button class="category-pill" aria-label="Show beds and home items">Beds & Home</button>
+                </div>
+                
+                <!-- Special Offers Banner -->
+                <div class="special-offers-banner">
+                    <div class="banner-content">
+                        <h3>Summer Sale!</h3>
+                        <p>Up to 40% off on selected items</p>
+                    </div>
+                    <button class="btn primary-btn">Shop Sale</button>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="products-container">
+                    <h3>Featured Products</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="../images/Royal Canin Adult Dog Food.png" alt="Royal Canin Dog Food">
+                            </div>
+                            <h3>Royal Canin Adult Dog Food</h3>
+                            <p class="price">$49.99</p>
+                            <button class="btn primary-btn">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1600369671236-e74521d4b6ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwdHJlYXRzfHwwfHx8fDE2OTg3MzEzODd8MA&ixlib=rb-4.0.3&q=80&w=300" alt="Wellness Cat Treats">
+                            </div>
+                            <h3>Wellness Kittles Cat Treats</h3>
+                            <p class="price">$14.99</p>
+                            <button class="btn primary-btn">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="../images/KONG Classic Toy Bundle.jpg" alt="KONG Classic Toy Bundle">
+                            </div>
+                            <h3>KONG Classic Toy Bundle</h3>
+                            <p class="price">$24.99</p>
+                            <button class="btn primary-btn">Add to Cart</button>
+                        </div>
+                        <div class="product-card sale-item">
+                            <div class="sale-badge">SALE</div>
+                            <div class="product-image">
+                                <img src="../images/Nylabone Dura Chew Toy Set.jpg" alt="Nylabone Dura Chew Toy Set">
+                            </div>
+                            <h3>Nylabone Dura Chew Toy Set</h3>
+                            <p class="price"><span class="original-price">$29.99</span> $19.99</p>
+                            <button class="btn primary-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- View More Button -->
+                    <div class="view-more">
+                        <button class="btn secondary-btn">View More Products</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Vet Care Section (Added to Dashboard) -->
+            <section id="vetcare" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Book Vet Care</h1>
+                    <button class="btn primary-btn"><i class="fas fa-plus"></i> Schedule Appointment</button>
+                </div>
+                
+                <!-- Veterinary Services Banner -->
+                <div class="vetcare-banner">
+                    <div class="banner-content">
+                        <h3>Expert Care When You Need It</h3>
+                        <p>Our team of licensed veterinarians is available for in-person and virtual appointments 7 days a week.</p>
+                        <p class="banner-highlight">New clients receive 20% off their first visit!</p>
+                    </div>
+                    <div class="banner-image">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8dmV0JTIwY2FyZXx8MHx8fHwxNjk4NzM0NjcxfDA&ixlib=rb-4.0.3&q=80&w=600" alt="Vet caring for a dog">
+                    </div>
+                </div>
+                
+                <!-- Service Categories -->
+                <div class="service-filters">
+                    <button class="service-filter active" data-filter="all" aria-label="Show all services">All Services</button>
+                    <button class="service-filter" data-filter="checkup" aria-label="Show check-up services">Check-ups</button>
+                    <button class="service-filter" data-filter="vaccines" aria-label="Show vaccine services">Vaccines</button>
+                    <button class="service-filter" data-filter="urgent" aria-label="Show urgent care services">Urgent Care</button>
+                </div>
+                
+                <!-- Services Grid -->
+                <div class="services-grid">
+                    <div class="service-card" data-category="checkup">
+                        <div class="service-icon">
+                            <img src="../images/Annual Wellness Exam.png" alt="Wellness Exam">
+                        </div>
+                        <span class="service-label">Popular</span>
+                        <h3>Annual Wellness Exam</h3>
+                        <p>Complete physical examination to ensure your pet's overall health and wellness.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Comprehensive health check</li>
+                            <li><i class="fas fa-check"></i> Preventive care advice</li>
+                            <li><i class="fas fa-check"></i> Nutrition consultation</li>
+                        </ul>
+                        <p class="service-price">From $75</p>
+                        <button class="btn primary-btn book-service-btn">Book Now</button>
+                    </div>
+                    
+                    <div class="service-card" data-category="vaccines">
+                        <div class="service-icon">
+                            <img src="../images/Vaccination Pet.jpg" alt="Vaccinations">
+                        </div>
+                        <h3>Vaccinations</h3>
+                        <p>Essential immunizations to protect your pet from common infectious diseases.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Core vaccines available</li>
+                            <li><i class="fas fa-check"></i> Non-core vaccines</li>
+                            <li><i class="fas fa-check"></i> Vaccination record management</li>
+                        </ul>
+                        <p class="service-price">From $45 per vaccine</p>
+                        <button class="btn primary-btn book-service-btn">Book Now</button>
+                    </div>
+                    
+                    <div class="service-card" data-category="urgent">
+                        <div class="service-icon">
+                            <img src="../images/Sick Pet Visit.jpg" alt="Sick Pet Visit">
+                        </div>
+                        <span class="service-label urgent">Priority</span>
+                        <h3>Sick Pet Visit</h3>
+                        <p>Immediate care for pets experiencing illness, injury, or concerning symptoms.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Same-day appointments</li>
+                            <li><i class="fas fa-check"></i> Diagnostic services</li>
+                            <li><i class="fas fa-check"></i> Treatment plans</li>
+                        </ul>
+                        <p class="service-price">From $95</p>
+                        <button class="btn primary-btn book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                
+                <!-- Appointment Booking Form (hidden by default) -->
+                <div class="appointment-booking-form" id="appointmentForm" style="display: none;">
+                    <div class="form-header">
+                        <h3>Schedule an Appointment</h3>
+                        <button class="close-form-btn" aria-label="Close appointment form"><i class="fas fa-times"></i></button>
+                    </div>
+                    
+                    <form class="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="service-type">Service Type*</label>
+                                <select id="service-type" class="form-control" required>
+                                    <option value="">Select service</option>
+                                    <option value="wellness">Annual Wellness Exam</option>
+                                    <option value="vaccination">Vaccinations</option>
+                                    <option value="sick">Sick Pet Visit</option>
+                                    <option value="dental">Dental Cleaning</option>
+                                    <option value="grooming">Grooming</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointment-pet">Pet*</label>
+                                <select id="appointment-pet" class="form-control" required>
+                                    <option value="">Select your pet</option>
+                                    <option value="max">Max</option>
+                                    <option value="luna">Luna</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointment-date">Preferred Date*</label>
+                                <input type="date" id="appointment-date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointment-time">Preferred Time*</label>
+                                <select id="appointment-time" class="form-control" required>
+                                    <option value="">Select time</option>
+                                    <option value="morning">Morning (9AM - 12PM)</option>
+                                    <option value="afternoon">Afternoon (1PM - 5PM)</option>
+                                    <option value="evening">Evening (6PM - 8PM)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-notes">Additional Notes</label>
+                            <textarea id="appointment-notes" class="form-control" rows="3" placeholder="Please share any specific concerns or symptoms your pet is experiencing."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <fieldset>
+                                <legend>Appointment Type</legend>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="in-person" name="appointment-type" value="in-person" checked>
+                                        <label for="in-person">In-Person Visit</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="virtual" name="appointment-type" value="virtual">
+                                        <label for="virtual">Virtual Consultation</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn outline-btn" id="cancelBooking">Cancel</button>
+                            <button type="submit" class="btn primary-btn">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PawCare Connect</h3>
+                <p>Your one-stop pet shop & care hub</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="vetcare.html">Book Vet Care</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Visit our Instagram profile"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Visit our Twitter profile"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PawCare Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html> 

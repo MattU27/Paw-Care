@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful - PawCare Connect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #2575fc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        .redirect-message {
+            color: #666;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .user-greeting {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+        }
+
+        .action-buttons .btn {
+            margin: 0 10px;
+        }
+
+        .welcome-message {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+            }
+            70% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 10px;
+            width: 0%;
+            animation: progress 3s forwards;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/Logo.png" alt="PawCare Connect">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="vetcare.html">Book Vet Care</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-button"><a href="auth.html">Sign In / Sign Up</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="search-button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#" class="cart-button" aria-label="View cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">3</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="user-greeting">Welcome back, <span id="userName">User</span>!</h1>
+            <p class="welcome-message">You've successfully logged into your PawCare Connect account. We're excited to help you take care of your furry friends!</p>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="redirect-message">Redirecting you to your dashboard in <span id="countdown">3</span> seconds...</p>
+            <div class="loading-spinner"></div>
+            
+            <div class="action-buttons">
+                <a href="dashboard.html" class="btn primary-btn">Go to Dashboard Now</a>
+                <a href="../index.html" class="btn secondary-btn">Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PawCare Connect</h3>
+                <p>Your one-stop pet shop & care hub</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="vetcare.html">Book Vet Care</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PawCare Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate retrieving user data from authentication process
+            // In a real application, this would come from the authentication backend
+            const userData = {
+                name: 'LeBron',  // Match the user name used across the site
+                id: 'user123',
+                email: 'lebron@example.com'
+            };
+            
+            // Display user name
+            document.getElementById('userName').textContent = userData.name;
+            
+            // Countdown and redirect
+            let seconds = 3;
+            const countdownElement = document.getElementById('countdown');
+            
+            const countdownInterval = setInterval(function() {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                }
+            }, 1000);
+            
+            // For demo purposes, allow the user to stop the automatic redirect
+            document.querySelector('.secondary-btn').addEventListener('click', function(e) {
+                clearInterval(countdownInterval);
+            });
+        });
+    </script>
+</body>
+</html> 

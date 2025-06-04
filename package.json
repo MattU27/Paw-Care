@@ -1,0 +1,16 @@
+{
+  "name": "pawcare-connect-database",
+  "version": "1.0.0",
+  "description": "Database setup for PawCare Connect pet shop website",
+  "main": "db_seed.js",
+  "scripts": {
+    "seed": "node db_seed.js",
+    "dev": "http-server . -p 3000 -o"
+  },
+  "dependencies": {
+    "mongodb": "^5.7.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 

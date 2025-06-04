@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop by Category - PawCare Connect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/Logo.png" alt="PawCare Connect">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="vetcare.html">Book Vet Care</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-button"><a href="auth.html">Sign In / Sign Up</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="search-button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="#" class="cart-button" aria-label="View cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Cart Popup -->
+    <div class="cart-popup" id="cartPopup">
+        <div class="cart-popup-content">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <!-- Cart items will be added here dynamically -->
+                <div class="empty-cart-message">Your cart is empty</div>
+            </div>
+            <div class="cart-promo">
+                <p class="promo-title">Have a promo code?</p>
+                <div class="promo-input">
+                    <input type="text" id="promoCodeInput" placeholder="Enter code">
+                    <button id="applyPromoBtn">Apply</button>
+                </div>
+                <div class="first-buyer-discount">
+                    <i class="fas fa-tag discount-icon"></i>
+                    <span class="discount-text">First-time buyer? Click here for <strong>15% OFF</strong></span>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row" id="discountRow" style="display: none;">
+                    <span>Discount:</span>
+                    <span id="cartDiscount">$0.00</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <button class="btn primary-btn checkout-btn" id="checkoutBtn">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart Popup -->
+
+    <main>
+        <section class="shop-header">
+            <h1>Shop by Category</h1>
+            <p>Find everything your pet needs in one convenient place</p>
+        </section>
+
+        <section class="sale-banner">
+            <h2>Summer Sale!</h2>
+            <p>Up to 40% off on selected items</p>
+            <a href="#" class="btn primary-btn">Shop Sale</a>
+        </section>
+
+        <section class="categories">
+            <div class="category-grid">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Foods & Treats.png" alt="Food & Treats">
+                    </div>
+                    <h3>Food & Treats</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Toys.jpg" alt="Toys">
+                    </div>
+                    <h3>Toys</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Health.png" alt="Health">
+                    </div>
+                    <h3>Health</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8cGV0JTIwZ3Jvb21pbmd8fDB8fHx8MTY5ODczMzc1OXww&ixlib=rb-4.0.3&q=80&w=100" alt="Grooming">
+                    </div>
+                    <h3>Grooming</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Accessories.jpg" alt="Accessories">
+                    </div>
+                    <h3>Accessories</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Beds & Home.jpg" alt="Beds & Home">
+                    </div>
+                    <h3>Beds & Home</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Training.png" alt="Training">
+                    </div>
+                    <h3>Training</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Travel.png" alt="Travel">
+                    </div>
+                    <h3>Travel</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Wellness.png" alt="Wellness">
+                    </div>
+                    <h3>Wellness</h3>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="../images/Litter & Waste.png" alt="Litter & Waste">
+                    </div>
+                    <h3>Litter & Waste</h3>
+                </a>
+            </div>
+        </section>
+
+        <section class="featured-categories">
+            <h2>Popular Categories</h2>
+            <div class="featured-grid">
+                <div class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHBldCUyMGJlZHx8MHx8fHwxNjk4NzMxNDcxfDA&ixlib=rb-4.0.3&q=80&w=400" alt="Dog Beds">
+                    <div class="featured-overlay">
+                        <h3>Dog Beds</h3>
+                        <p>Premium comfort for your canine</p>
+                        <a href="#" class="btn primary-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1592754862816-1a21a4ea2281?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8Y2F0JTIwdG95c3x8MHx8fHwxNjk4NzM0MDc2fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Cat Toys">
+                    <div class="featured-overlay">
+                        <h3>Cat Toys</h3>
+                        <p>Keep your feline entertained</p>
+                        <a href="#" class="btn primary-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="featured-category">
+                    <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8ZG9nJTIwc2hhbXBvb3x8MHx8fHwxNjk4NzM0MTEwfDA&ixlib=rb-4.0.3&q=80&w=400" alt="Grooming Supplies">
+                    <div class="featured-overlay">
+                        <h3>Grooming Supplies</h3>
+                        <p>Keep your pet looking their best</p>
+                        <a href="#" class="btn primary-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Listing Section -->
+        <section class="products-section">
+            <h2>Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Royal Canin Adult Dog Food.png" alt="Royal Canin Dog Food">
+                    </div>
+                    <h3>Royal Canin Adult Dog Food</h3>
+                    <p class="price">$49.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1600369671236-e74521d4b6ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwdHJlYXRzfHwwfHx8fDE2OTg3MzEzODd8MA&ixlib=rb-4.0.3&q=80&w=300" alt="Wellness Cat Treats">
+                    </div>
+                    <h3>Wellness Kittles Cat Treats</h3>
+                    <p class="price">$14.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/KONG Classic Toy Bundle.jpg" alt="KONG Classic Toy Bundle">
+                    </div>
+                    <h3>KONG Classic Toy Bundle</h3>
+                    <p class="price">$24.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHBldCUyMGJlZHx8MHx8fHwxNjk4NzMxNDcxfDA&ixlib=rb-4.0.3&q=80&w=300" alt="Orthopedic Pet Bed">
+                    </div>
+                    <h3>Orthopedic Memory Foam Pet Bed</h3>
+                    <p class="price">$39.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Reflective Nylon Dog Collar.jpg" alt="Reflective Dog Collar">
+                    </div>
+                    <h3>Reflective Nylon Dog Collar</h3>
+                    <p class="price">$19.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/Furminator Deluxe Grooming Kit.jpg" alt="Furminator Grooming Kit">
+                    </div>
+                    <h3>Furminator Deluxe Grooming Kit</h3>
+                    <p class="price">$34.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card sale-item">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="../images/Nylabone Dura Chew Toy Set.jpg" alt="Nylabone Dura Chew Toy Set">
+                    </div>
+                    <h3>Nylabone Dura Chew Toy Set</h3>
+                    <p class="price"><span class="original-price">$29.99</span> $19.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+                <div class="product-card sale-item">
+                    <div class="sale-badge">SALE</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cGV0X2Zvb2R8fHx8fHwxNjk4NzM1NjAw&ixlib=rb-4.0.3&q=80&w=300" alt="Blue Buffalo Organic Cat Food">
+                    </div>
+                    <h3>Blue Buffalo Organic Cat Food</h3>
+                    <p class="price"><span class="original-price">$45.99</span> $29.99</p>
+                    <button class="btn primary-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="view-all">
+            <a href="#" class="btn secondary-btn">View All Products</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PawCare Connect</h3>
+                <p>Your one-stop pet shop & care hub</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="vetcare.html">Book Vet Care</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PawCare Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html> 
