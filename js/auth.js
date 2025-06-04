@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sign up form submission
     if (signupForm) {
         signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
             
             // Get form values
             const fullname = document.getElementById('fullname').value.trim();
@@ -148,10 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         }));
                         
                         // Show success message
-                        alert('Registration successful! Welcome to PawCare Connect.');
+                        alert('Registration successful! Redirecting to dashboard...');
                         
-                        // Redirect to login success page
-                        window.location.href = "login-success.html";
+                        // Redirect to dashboard directly without relying on the server's redirectTo
+                        window.location.href = "dashboard.html";
                     } else {
                         // Show error message
                         showError(document.getElementById('signup-email'), data.message || 'Registration failed');
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sign in form submission
     if (signinForm) {
         signinForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
             
             // Get form values
             const email = document.getElementById('email').value.trim();
@@ -238,8 +238,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             localStorage.removeItem('pawcare_remembered_user');
                         }
                         
-                        // Redirect to login success page
-                        window.location.href = "login-success.html";
+                        // Redirect to dashboard directly without relying on the server's redirectTo
+                        window.location.href = "dashboard.html";
                     } else {
                         // Show error message
                         showError(document.getElementById('password'), data.message || 'Login failed');
@@ -289,8 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const rememberedUser = JSON.parse(localStorage.getItem('pawcare_remembered_user'));
         
         if (currentUser || rememberedUser) {
-            // User is already logged in, redirect to login success page
-            window.location.href = "login-success.html";
+            // User is already logged in, redirect to dashboard
+            window.location.href = "dashboard.html";
         }
     }
     
@@ -305,23 +305,4 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Social login will be implemented in the future.');
         });
     });
-    
-    // Pre-fill LeBron's credentials for demo purposes
-    const lebronDemoBtn = document.createElement('button');
-    lebronDemoBtn.textContent = 'Demo Login (LeBron)';
-    lebronDemoBtn.className = 'btn secondary-btn';
-    lebronDemoBtn.style.width = '100%';
-    lebronDemoBtn.style.marginTop = '10px';
-    
-    lebronDemoBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('email').value = 'lebron@example.com';
-        document.getElementById('password').value = 'password123';
-    });
-    
-    // Add the demo button after the signin button
-    if (signinForm) {
-        const signinButton = signinForm.querySelector('button[type="submit"]');
-        signinButton.parentNode.insertBefore(lebronDemoBtn, signinButton.nextSibling);
-    }
 }); 

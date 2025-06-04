@@ -1,0 +1,50 @@
+[{
+  "_id": "hr1",
+  "petId": "pet1",
+  "date": {
+    "$date": "2023-10-15T00:00:00.000Z"
+  },
+  "type": "examination",
+  "vetId": "vet1",
+  "notes": "Annual wellness exam. All vitals normal. Weight: 65.5 lbs.",
+  "medications": [
+    "Heartgard Plus - monthly"
+  ],
+  "vaccinations": [
+    "Rabies - valid until 10/15/2024"
+  ],
+  "attachments": []
+},
+{
+  "_id": "hr2",
+  "petId": "pet1",
+  "date": {
+    "$date": "2022-10-20T00:00:00.000Z"
+  },
+  "type": "examination",
+  "vetId": "vet2",
+  "notes": "Annual wellness exam. All vitals normal. Weight: 63.2 lbs.",
+  "medications": [
+    "Heartgard Plus - monthly"
+  ],
+  "vaccinations": [
+    "Rabies - valid until 10/20/2023",
+    "DHPP - valid until 10/20/2023"
+  ],
+  "attachments": []
+},
+{
+  "_id": "hr3",
+  "petId": "pet2",
+  "date": {
+    "$date": "2023-09-05T00:00:00.000Z"
+  },
+  "type": "examination",
+  "vetId": "vet3",
+  "notes": "Checkup for digestive issues. Recommended special diet.",
+  "medications": [
+    "Probiotic supplement - daily for 2 weeks"
+  ],
+  "vaccinations": [],
+  "attachments": []
+}]

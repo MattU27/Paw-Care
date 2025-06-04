@@ -1,0 +1,60 @@
+[{
+  "_id": "cat1",
+  "name": "Food & Treats",
+  "imageUrl": "images/Foods & Treats.png",
+  "featured": true
+},
+{
+  "_id": "cat2",
+  "name": "Toys",
+  "imageUrl": "images/Toys.jpg",
+  "featured": true
+},
+{
+  "_id": "cat3",
+  "name": "Health",
+  "imageUrl": "images/Health.png",
+  "featured": false
+},
+{
+  "_id": "cat4",
+  "name": "Grooming",
+  "imageUrl": "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7",
+  "featured": true
+},
+{
+  "_id": "cat5",
+  "name": "Accessories",
+  "imageUrl": "images/Accessories.jpg",
+  "featured": false
+},
+{
+  "_id": "cat6",
+  "name": "Beds & Home",
+  "imageUrl": "images/Beds & Home.jpg",
+  "featured": true
+},
+{
+  "_id": "cat7",
+  "name": "Training",
+  "imageUrl": "images/Training.png",
+  "featured": false
+},
+{
+  "_id": "cat8",
+  "name": "Travel",
+  "imageUrl": "images/Travel.png",
+  "featured": false
+},
+{
+  "_id": "cat9",
+  "name": "Wellness",
+  "imageUrl": "images/Wellness.png",
+  "featured": false
+},
+{
+  "_id": "cat10",
+  "name": "Litter & Waste",
+  "imageUrl": "images/Litter & Waste.png",
+  "featured": false
+}]

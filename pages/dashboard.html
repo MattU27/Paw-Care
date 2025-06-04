@@ -8,6 +8,59 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Authentication check - redirect to login if not authenticated
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(sessionStorage.getItem('pawcare_current_user'));
+            const rememberedUser = JSON.parse(localStorage.getItem('pawcare_remembered_user'));
+            
+            const user = currentUser || rememberedUser;
+            
+            if (!user) {
+                // No authenticated user found, redirect to login
+                window.location.href = 'auth.html';
+                return;
+            }
+            
+            console.log('User authenticated:', user); // Add logging to debug
+            
+            // Update user information in the dashboard
+            updateUserInfo(user);
+            
+            // Handle logout
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Clear user data from storage
+                sessionStorage.removeItem('pawcare_current_user');
+                localStorage.removeItem('pawcare_remembered_user');
+                // Redirect to home page
+                window.location.href = "../index.html";
+            });
+        });
+        
+        // Function to update user information in the dashboard
+        function updateUserInfo(user) {
+            console.log('Updating user info with:', user); // Add logging to debug
+            
+            // Update user name in dropdown
+            const userDropdownName = document.querySelector('.user-dropdown-btn span');
+            if (userDropdownName) {
+                userDropdownName.textContent = user.name ? user.name.split(' ')[0] : 'User'; // First name only
+            }
+            
+            // Update user name in sidebar
+            const userInfoName = document.querySelector('.user-info h3');
+            if (userInfoName) {
+                userInfoName.textContent = user.name || 'User';
+            }
+            
+            // Update welcome message
+            const welcomeMessage = document.querySelector('.dashboard-header h1');
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome Back, ${user.name ? user.name.split(' ')[0] : 'User'}!`;
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -29,8 +82,8 @@
             </a>
             <div class="user-dropdown">
                 <button class="user-dropdown-btn" aria-label="User menu" aria-expanded="false" aria-haspopup="true">
-                    <img src="../images/james-40k-celebrate-240303-1000x1500-LAL_social_watermark_1080x1350-1.avif" alt="LeBron" class="user-mini-avatar">
-                    <span>LeBron</span>
+                    <img src="../images/james-40k-celebrate-240303-1000x1500-LAL_social_watermark_1080x1350-1.avif" alt="User" class="user-mini-avatar">
+                    <span>User</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="user-dropdown-content">

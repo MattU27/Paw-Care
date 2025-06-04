@@ -1,0 +1,51 @@
+[{
+  "_id": "pet1",
+  "name": "Max",
+  "ownerId": "user1",
+  "species": "Dog",
+  "breed": "Golden Retriever",
+  "age": 3,
+  "weight": 65.5,
+  "birthdate": {
+    "$date": "2020-06-15T00:00:00.000Z"
+  },
+  "microchipped": true,
+  "vaccinated": true,
+  "neutered": true,
+  "medicalNotes": "Allergic to chicken",
+  "imageUrl": "https://images.unsplash.com/photo-1587764379873-97837921fd44"
+},
+{
+  "_id": "pet2",
+  "name": "Luna",
+  "ownerId": "user1",
+  "species": "Cat",
+  "breed": "Siamese",
+  "age": 2,
+  "weight": 8.2,
+  "birthdate": {
+    "$date": "2021-03-10T00:00:00.000Z"
+  },
+  "microchipped": true,
+  "vaccinated": true,
+  "neutered": false,
+  "medicalNotes": "Sensitive stomach",
+  "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba"
+},
+{
+  "_id": "pet3",
+  "name": "Buddy",
+  "ownerId": "user2",
+  "species": "Dog",
+  "breed": "Beagle",
+  "age": 5,
+  "weight": 30.2,
+  "birthdate": {
+    "$date": "2018-04-22T00:00:00.000Z"
+  },
+  "microchipped": false,
+  "vaccinated": true,
+  "neutered": true,
+  "medicalNotes": "",
+  "imageUrl": "https://images.unsplash.com/photo-1544568100-847a948585b9"
+}]

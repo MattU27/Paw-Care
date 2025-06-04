@@ -1,0 +1,40 @@
+[{
+  "_id": "promo1",
+  "code": "WELCOME15",
+  "description": "15% off for first-time buyers",
+  "discountPercentage": 15,
+  "maxDiscount": 50,
+  "minPurchase": 0,
+  "isActive": true,
+  "validFrom": {
+    "$date": "2023-01-01T00:00:00.000Z"
+  },
+  "validTo": {
+    "$date": "2023-12-31T00:00:00.000Z"
+  },
+  "usageLimit": 1,
+  "usageCount": 0,
+  "forFirstTimeOnly": true
+},
+{
+  "_id": "promo2",
+  "code": "SUMMER40",
+  "description": "40% off on selected summer items",
+  "discountPercentage": 40,
+  "maxDiscount": 100,
+  "minPurchase": 50,
+  "isActive": true,
+  "validFrom": {
+    "$date": "2023-06-01T00:00:00.000Z"
+  },
+  "validTo": {
+    "$date": "2023-08-31T00:00:00.000Z"
+  },
+  "usageLimit": null,
+  "usageCount": 0,
+  "forFirstTimeOnly": false,
+  "applicableCategories": [
+    "cat4",
+    "cat8"
+  ]
+}]

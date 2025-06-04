@@ -25,8 +25,8 @@ async function connectToMongo() {
         console.log("Connected to MongoDB");
         db = client.db("pawcare");
         
-        // Create LeBron James account if it doesn't exist
-        await createLebronAccount();
+        // Clear existing users collection
+        await clearUsers();
         
         return client;
     } catch (err) {
@@ -35,44 +35,14 @@ async function connectToMongo() {
     }
 }
 
-// Create LeBron James account
-async function createLebronAccount() {
+// Clear users collection
+async function clearUsers() {
     try {
-        // Check if LeBron's account already exists
-        const existingUser = await db.collection('users').findOne({ email: 'lebron@example.com' });
-        
-        if (!existingUser) {
-            // Hash the password
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash('password123', salt);
-            
-            // Create LeBron's account
-            const lebronUser = {
-                firstName: 'LeBron',
-                lastName: 'James',
-                email: 'lebron@example.com',
-                passwordHash: hashedPassword,
-                role: 'customer',
-                memberSince: new Date(),
-                isPremium: true,
-                address: {
-                    street: '123 Basketball Court',
-                    city: 'Los Angeles',
-                    state: 'CA',
-                    zipCode: '90001',
-                    country: 'USA'
-                },
-                phoneNumber: '555-123-4567',
-                loyaltyPoints: 325
-            };
-            
-            await db.collection('users').insertOne(lebronUser);
-            console.log("LeBron James account created");
-        } else {
-            console.log("LeBron James account already exists");
-        }
+        // Clear existing users
+        await db.collection('users').deleteMany({});
+        console.log("All users deleted from the database");
     } catch (err) {
-        console.error("Error creating LeBron account:", err);
+        console.error("Error clearing users:", err);
     }
 }
 
@@ -116,7 +86,8 @@ app.post('/api/auth/register', async (req, res) => {
             firstName,
             lastName,
             email,
-            role: 'customer'
+            role: 'customer',
+            redirectTo: 'dashboard.html'
         };
         
         res.status(201).json({
@@ -153,7 +124,8 @@ app.post('/api/auth/login', async (req, res) => {
             id: user._id,
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
-            role: user.role
+            role: user.role,
+            redirectTo: 'dashboard.html'
         };
         
         res.json({

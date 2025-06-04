@@ -70,6 +70,12 @@
         .logout-btn:hover {
             background-color: #d32f2f;
         }
+        
+        .redirect-message {
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -127,9 +133,11 @@
             </div>
             
             <div class="action-buttons">
-                <a href="../index.html" class="btn primary-btn">Go to Homepage</a>
+                <a href="dashboard.html" class="btn primary-btn">Go to Dashboard</a>
                 <button id="logoutBtn" class="btn logout-btn">Logout</button>
             </div>
+            
+            <p class="redirect-message">Redirecting to dashboard in <span id="countdown">3</span> seconds...</p>
         </section>
     </main>
 
@@ -196,6 +204,19 @@
                     // Redirect to home page
                     window.location.href = "../index.html";
                 });
+                
+                // Auto-redirect to dashboard after countdown
+                let countdown = 3;
+                const countdownElement = document.getElementById('countdown');
+                const redirectInterval = setInterval(function() {
+                    countdown--;
+                    countdownElement.textContent = countdown;
+                    
+                    if (countdown <= 0) {
+                        clearInterval(redirectInterval);
+                        window.location.href = "dashboard.html";
+                    }
+                }, 1000);
             } else {
                 // If no user is logged in, redirect to auth page
                 window.location.href = "auth.html";

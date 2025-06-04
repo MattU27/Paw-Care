@@ -1,0 +1,90 @@
+[{
+  "_id": "serv1",
+  "name": "Annual Wellness Exam",
+  "description": "Complete physical examination to ensure your pet's overall health and wellness.",
+  "category": "checkup",
+  "price": 75,
+  "duration": 45,
+  "popular": true,
+  "features": [
+    "Comprehensive health check",
+    "Preventive care advice",
+    "Nutrition consultation"
+  ],
+  "imageUrl": "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def"
+},
+{
+  "_id": "serv2",
+  "name": "Vaccinations",
+  "description": "Essential immunizations to protect your pet from common infectious diseases.",
+  "category": "vaccines",
+  "price": 45,
+  "duration": 20,
+  "popular": false,
+  "features": [
+    "Core vaccines available",
+    "Non-core vaccines",
+    "Vaccination record management"
+  ],
+  "imageUrl": "../images/Vaccination Pet.jpg"
+},
+{
+  "_id": "serv3",
+  "name": "Sick Pet Visit",
+  "description": "Immediate care for pets experiencing illness, injury, or concerning symptoms.",
+  "category": "urgent",
+  "price": 95,
+  "duration": 60,
+  "popular": false,
+  "features": [
+    "Same-day appointments",
+    "Diagnostic services",
+    "Treatment plans"
+  ],
+  "imageUrl": "../images/Sick Pet Visit.jpg"
+},
+{
+  "_id": "serv4",
+  "name": "Dental Cleaning",
+  "description": "Professional teeth cleaning to maintain your pet's oral health and prevent disease.",
+  "category": "checkup",
+  "price": 180,
+  "duration": 90,
+  "popular": false,
+  "features": [
+    "Complete dental exam",
+    "Plaque and tartar removal",
+    "Polishing and fluoride treatment"
+  ],
+  "imageUrl": "../images/Dental Cleaning.png"
+},
+{
+  "_id": "serv5",
+  "name": "Virtual Consult",
+  "description": "Convenient online consultations for minor concerns or follow-up appointments.",
+  "category": "checkup",
+  "price": 60,
+  "duration": 30,
+  "popular": true,
+  "features": [
+    "24/7 availability",
+    "Video consultation",
+    "Digital prescriptions available"
+  ],
+  "imageUrl": "../images/Virtual Consult.png"
+},
+{
+  "_id": "serv6",
+  "name": "Grooming",
+  "description": "Professional grooming services to keep your pet looking and feeling their best.",
+  "category": "checkup",
+  "price": 65,
+  "duration": 60,
+  "popular": false,
+  "features": [
+    "Bathing and drying",
+    "Haircut and styling",
+    "Nail trimming and ear cleaning"
+  ],
+  "imageUrl": "../images/Grooming Pet.png"
+}]

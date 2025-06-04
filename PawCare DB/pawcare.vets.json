@@ -1,0 +1,36 @@
+[{
+  "_id": "vet1",
+  "firstName": "Stephen",
+  "lastName": "Curry",
+  "specialty": "Small Animal Specialist",
+  "experience": "10+ years",
+  "imageUrl": "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
+  "bio": "Dr. Curry specializes in the care of small pets including dogs, cats, and small mammals.",
+  "available": true,
+  "rating": 4.9,
+  "reviews": 156
+},
+{
+  "_id": "vet2",
+  "firstName": "Sarah",
+  "lastName": "Johnson",
+  "specialty": "Veterinary Surgeon",
+  "experience": "8 years",
+  "imageUrl": "https://randomuser.me/api/portraits/women/22.jpg",
+  "bio": "Dr. Johnson is an experienced surgeon specializing in orthopedic procedures.",
+  "available": true,
+  "rating": 4.8,
+  "reviews": 98
+},
+{
+  "_id": "vet3",
+  "firstName": "Michael",
+  "lastName": "Brown",
+  "specialty": "Feline Medicine",
+  "experience": "12 years",
+  "imageUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+  "bio": "Dr. Brown has dedicated his career to feline medicine and behavior.",
+  "available": false,
+  "rating": 4.7,
+  "reviews": 124
+}]
