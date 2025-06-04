@@ -208,6 +208,30 @@
         .apple i {
             color: #000;
         }
+        
+        /* Secondary button style */
+        .secondary-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff3860;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
 
         /* Responsive design */
         @media (max-width: 768px) {
@@ -424,92 +448,7 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab switching functionality
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons and contents
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-            
-            // Links to switch between sign in and sign up
-            document.getElementById('showSignup').addEventListener('click', function(e) {
-                e.preventDefault();
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                document.querySelector('[data-tab="signup"]').classList.add('active');
-                document.getElementById('signup').classList.add('active');
-            });
-            
-            document.getElementById('showSignin').addEventListener('click', function(e) {
-                e.preventDefault();
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                document.querySelector('[data-tab="signin"]').classList.add('active');
-                document.getElementById('signin').classList.add('active');
-            });
-            
-            // Form submission placeholders (to be replaced with actual backend integration)
-            document.getElementById('signinForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                // This would be replaced with actual authentication logic
-                console.log('Sign in form submitted');
-                // Redirect to login success page
-                window.location.href = "login-success.html";
-            });
-            
-            document.getElementById('signupForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Validate passwords match
-                const password = document.getElementById('signup-password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
-                
-                if (password !== confirmPassword) {
-                    alert('Passwords do not match!');
-                    return;
-                }
-                
-                // This would be replaced with actual registration logic
-                console.log('Sign up form submitted');
-                // Redirect to login success page
-                window.location.href = "login-success.html";
-            });
-
-            // Add hover effects to form buttons
-            const formButtons = document.querySelectorAll('.primary-btn');
-            formButtons.forEach(button => {
-                button.addEventListener('mouseover', function() {
-                    this.style.transform = 'translateY(-3px)';
-                    this.style.boxShadow = '0 6px 15px rgba(0,0,0,0.2)';
-                });
-                
-                button.addEventListener('mouseout', function() {
-                    this.style.transform = '';
-                    this.style.boxShadow = '';
-                });
-            });
-
-            // Initialize cart functionality from the main script
-            if (typeof updateCartItems === 'function') {
-                updateCartItems();
-            }
-        });
-    </script>
+    <script src="../js/auth.js"></script>
 
     <!-- Cart Popup -->
     <div class="cart-popup" id="cartPopup">

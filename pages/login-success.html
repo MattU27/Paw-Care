@@ -3,101 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Successful - PawCare Connect</title>
+    <title>Login Success - PawCare Connect</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .success-container {
-            max-width: 600px;
-            margin: 80px auto;
-            text-align: center;
+            max-width: 800px;
+            margin: 50px auto;
             padding: 40px;
-            background-color: #fff;
+            text-align: center;
+            background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-
+        
         .success-icon {
             font-size: 5rem;
             color: #4CAF50;
             margin-bottom: 20px;
-            animation: scaleIn 0.5s ease-out;
         }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #2575fc;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        .redirect-message {
-            color: #666;
-            margin: 20px 0;
-            font-style: italic;
-        }
-
-        .user-greeting {
-            font-size: 1.8rem;
-            margin: 20px 0;
+        
+        .success-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: #333;
         }
-
+        
+        .user-info {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .user-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .user-detail {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .user-detail strong {
+            width: 100px;
+            display: inline-block;
+        }
+        
         .action-buttons {
             margin-top: 30px;
         }
-
+        
         .action-buttons .btn {
             margin: 0 10px;
         }
-
-        .welcome-message {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 30px;
+        
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
         }
-
-        @keyframes scaleIn {
-            0% {
-                transform: scale(0);
-            }
-            70% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            margin: 20px 0;
-            height: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            border-radius: 10px;
-            width: 0%;
-            animation: progress 3s forwards;
-        }
-
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+        
+        .logout-btn:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -115,7 +86,7 @@
                 <li><a href="vetcare.html">Book Vet Care</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li class="nav-button"><a href="auth.html">Sign In / Sign Up</a></li>
+                <li class="nav-button"><a href="#" id="accountBtn">My Account</a></li>
             </ul>
         </nav>
         <div class="header-actions">
@@ -127,7 +98,7 @@
             </button>
             <a href="#" class="cart-button" aria-label="View cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">3</span>
+                <span class="cart-badge">0</span>
             </a>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
@@ -136,24 +107,30 @@
     </header>
 
     <main>
-        <div class="success-container">
+        <section class="success-container">
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h1 class="user-greeting">Welcome back, <span id="userName">User</span>!</h1>
-            <p class="welcome-message">You've successfully logged into your PawCare Connect account. We're excited to help you take care of your furry friends!</p>
+            <h1 class="success-title">Login Successful!</h1>
+            <p>Welcome back to PawCare Connect. You've successfully logged in to your account.</p>
             
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
+            <div class="user-info">
+                <h3>Account Information</h3>
+                <div class="user-detail">
+                    <strong>Name:</strong>
+                    <span id="userName">Loading...</span>
+                </div>
+                <div class="user-detail">
+                    <strong>Email:</strong>
+                    <span id="userEmail">Loading...</span>
+                </div>
             </div>
-            <p class="redirect-message">Redirecting you to your dashboard in <span id="countdown">3</span> seconds...</p>
-            <div class="loading-spinner"></div>
             
             <div class="action-buttons">
-                <a href="dashboard.html" class="btn primary-btn">Go to Dashboard Now</a>
-                <a href="../index.html" class="btn secondary-btn">Back to Home</a>
+                <a href="../index.html" class="btn primary-btn">Go to Homepage</a>
+                <button id="logoutBtn" class="btn logout-btn">Logout</button>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -195,38 +172,34 @@
         </div>
     </footer>
 
+    <script src="../js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Simulate retrieving user data from authentication process
-            // In a real application, this would come from the authentication backend
-            const userData = {
-                name: 'LeBron',  // Match the user name used across the site
-                id: 'user123',
-                email: 'lebron@example.com'
-            };
+            // Get user data from session storage
+            const currentUser = JSON.parse(sessionStorage.getItem('pawcare_current_user'));
+            const rememberedUser = JSON.parse(localStorage.getItem('pawcare_remembered_user'));
             
-            // Display user name
-            document.getElementById('userName').textContent = userData.name;
+            // Use either current session user or remembered user
+            const user = currentUser || rememberedUser;
             
-            // Countdown and redirect
-            let seconds = 3;
-            const countdownElement = document.getElementById('countdown');
-            
-            const countdownInterval = setInterval(function() {
-                seconds--;
-                countdownElement.textContent = seconds;
+            if (user) {
+                // Display user information
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('userEmail').textContent = user.email;
                 
-                if (seconds <= 0) {
-                    clearInterval(countdownInterval);
-                    // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
-                }
-            }, 1000);
-            
-            // For demo purposes, allow the user to stop the automatic redirect
-            document.querySelector('.secondary-btn').addEventListener('click', function(e) {
-                clearInterval(countdownInterval);
-            });
+                // Handle logout button
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+                    // Clear user data from storage
+                    sessionStorage.removeItem('pawcare_current_user');
+                    localStorage.removeItem('pawcare_remembered_user');
+                    
+                    // Redirect to home page
+                    window.location.href = "../index.html";
+                });
+            } else {
+                // If no user is logged in, redirect to auth page
+                window.location.href = "auth.html";
+            }
         });
     </script>
 </body>
