@@ -3,6 +3,126 @@ document.addEventListener('DOMContentLoaded', function() {
     const dashboardNavItems = document.querySelectorAll('.dashboard-nav li a');
     const dashboardSections = document.querySelectorAll('.dashboard-section');
     
+    // Connect dashboard cart button to main cart functionality
+    const cartButton = document.querySelector('.cart-button');
+    const cartPopup = document.getElementById('cartPopup');
+    
+    if (cartButton && cartPopup) {
+        cartButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Check if openCart function exists (from script.js)
+            if (typeof openCart === 'function') {
+                openCart();
+            } else {
+                // Fallback if openCart function is not available
+                cartPopup.classList.add('open');
+                document.body.classList.add('cart-open');
+            }
+        });
+    }
+    
+    // Dashboard checkout functionality
+    const dashboardCheckoutBtn = document.getElementById('dashboardCheckoutBtn');
+    const checkoutOverlay = document.getElementById('checkoutOverlay');
+    const closeCheckoutBtn = document.getElementById('closeCheckout');
+    const backToCartBtn = document.getElementById('backToCartBtn');
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+    
+    if (dashboardCheckoutBtn && checkoutOverlay) {
+        // Show checkout overlay when checkout button is clicked
+        dashboardCheckoutBtn.addEventListener('click', function() {
+            // Close the cart popup first
+            if (cartPopup && cartPopup.classList.contains('open')) {
+                if (typeof closeCart === 'function') {
+                    closeCart();
+                } else {
+                    cartPopup.classList.remove('open');
+                    document.body.classList.remove('cart-open');
+                }
+            }
+            
+            // Show checkout overlay
+            checkoutOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+        
+        // Hide checkout overlay when close button is clicked
+        if (closeCheckoutBtn) {
+            closeCheckoutBtn.addEventListener('click', function() {
+                checkoutOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Add hover effect to close button
+            closeCheckoutBtn.addEventListener('mouseover', function() {
+                this.style.backgroundColor = '#f0f0f0';
+            });
+            
+            closeCheckoutBtn.addEventListener('mouseout', function() {
+                this.style.backgroundColor = '';
+            });
+        }
+        
+        // Hide checkout overlay and show cart when back to cart button is clicked
+        if (backToCartBtn) {
+            backToCartBtn.addEventListener('click', function() {
+                checkoutOverlay.style.display = 'none';
+                
+                // Show cart popup
+                if (typeof openCart === 'function') {
+                    openCart();
+                } else if (cartPopup) {
+                    cartPopup.classList.add('open');
+                    document.body.classList.add('cart-open');
+                }
+            });
+        }
+        
+        // Handle place order button
+        if (placeOrderBtn) {
+            placeOrderBtn.addEventListener('click', function() {
+                // Create order confirmation message
+                const orderConfirmation = document.createElement('div');
+                orderConfirmation.style.position = 'fixed';
+                orderConfirmation.style.top = '50%';
+                orderConfirmation.style.left = '50%';
+                orderConfirmation.style.transform = 'translate(-50%, -50%)';
+                orderConfirmation.style.backgroundColor = 'white';
+                orderConfirmation.style.padding = '30px';
+                orderConfirmation.style.borderRadius = '8px';
+                orderConfirmation.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+                orderConfirmation.style.textAlign = 'center';
+                orderConfirmation.style.zIndex = '10000';
+                
+                orderConfirmation.innerHTML = `
+                    <h2 style="margin-top: 0;">Order Placed Successfully!</h2>
+                    <p>Your order #${Math.floor(1000 + Math.random() * 9000)} has been confirmed.</p>
+                    <p>Estimated delivery: <strong>${new Date(Date.now() + 3*24*60*60*1000).toLocaleDateString()}</strong></p>
+                    <p>A confirmation email has been sent to your registered email address.</p>
+                    <button class="btn primary-btn" id="confirmationOkBtn" style="margin-top: 20px;">OK</button>
+                `;
+                
+                document.body.appendChild(orderConfirmation);
+                
+                // Clear cart
+                if (typeof window.cartItems !== 'undefined') {
+                    window.cartItems = [];
+                    if (typeof updateCartBadge === 'function') updateCartBadge();
+                    if (typeof updateCartItems === 'function') updateCartItems();
+                }
+                
+                // Close checkout overlay
+                checkoutOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Handle OK button click
+                document.getElementById('confirmationOkBtn').addEventListener('click', function() {
+                    document.body.removeChild(orderConfirmation);
+                });
+            });
+        }
+    }
+    
     // Handle dashboard navigation clicks
     dashboardNavItems.forEach(item => {
         item.addEventListener('click', function(e) {
@@ -112,17 +232,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Add to cart functionality in recommended products
-    const addToCartButtons = document.querySelectorAll('.product-slide .btn');
+    const addToCartButtons = document.querySelectorAll('.product-slide .btn, .product-card .btn');
     
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const productSlide = this.closest('.product-slide');
-            const productName = productSlide.querySelector('h4').textContent;
-            const productPrice = productSlide.querySelector('.product-price').textContent;
-            const productImage = productSlide.querySelector('img').src;
+            if (this.textContent.trim() !== 'Add to Cart') return;
             
-            // This would typically add the item to the cart via the main cart functionality
-            // For now, just show a message
+            const productElement = this.closest('.product-slide') || this.closest('.product-card');
+            if (!productElement) return;
+            
+            const productName = productElement.querySelector('h4, h3').textContent;
+            const productPriceElement = productElement.querySelector('.product-price');
+            const productImage = productElement.querySelector('img').src;
+            
+            if (!productPriceElement) return;
+            
+            const productPrice = productPriceElement.textContent;
+            const price = parseFloat(productPrice.replace(/[^\d.-]/g, ''));
+            
+            if (isNaN(price)) return;
+            
+            // Check if the main cart items array exists (from script.js)
+            if (typeof window.cartItems !== 'undefined') {
+                window.cartItems.push({
+                    name: productName,
+                    price: '$' + price.toFixed(2),
+                    numericPrice: price,
+                    image: productImage
+                });
+                
+                // Update cart UI if functions exist
+                if (typeof updateCartPrices === 'function') updateCartPrices();
+                if (typeof updateCartBadge === 'function') updateCartBadge();
+                if (typeof updateCartItems === 'function') updateCartItems();
+            } else {
+                // Fallback - create a custom event for script.js to handle
+                const addToCartEvent = new CustomEvent('dashboard-add-to-cart', {
+                    detail: {
+                        name: productName,
+                        price: '$' + price.toFixed(2),
+                        numericPrice: price,
+                        image: productImage
+                    }
+                });
+                document.dispatchEvent(addToCartEvent);
+            }
+            
+            // Simple animation
             this.textContent = 'Added!';
             this.classList.add('added');
             
@@ -131,19 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.textContent = 'Add to Cart';
                 this.classList.remove('added');
             }, 1500);
-            
-            console.log(`Added to cart: ${productName} - ${productPrice}`);
-            
-            // Trigger a custom event that the main cart script could listen for
-            const addToCartEvent = new CustomEvent('dashboard-add-to-cart', {
-                detail: {
-                    name: productName,
-                    price: productPrice,
-                    image: productImage
-                }
-            });
-            
-            document.dispatchEvent(addToCartEvent);
         });
     });
 
@@ -539,52 +682,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle the add to cart buttons in the shop section
-    const shopAddToCartButtons = document.querySelectorAll('#shop .product-card .btn');
-    
-    if (shopAddToCartButtons.length > 0) {
-        shopAddToCartButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const productCard = this.closest('.product-card');
-                const productName = productCard.querySelector('h3').textContent;
-                const productPrice = productCard.querySelector('.price').textContent;
-                const productImage = productCard.querySelector('img').src;
-                
-                // Show added to cart confirmation
-                const originalText = this.textContent;
-                this.textContent = 'Added!';
-                this.classList.add('added');
-                
-                // Reset button after 1.5 seconds
-                setTimeout(() => {
-                    this.textContent = originalText;
-                    this.classList.remove('added');
-                }, 1500);
-                
-                // In a complete implementation, you would add the product to the cart
-                console.log(`Added to cart: ${productName} - ${productPrice}`);
-                
-                // Trigger a custom event that the main cart script could listen for
-                const addToCartEvent = new CustomEvent('dashboard-add-to-cart', {
-                    detail: {
-                        name: productName,
-                        price: productPrice,
-                        image: productImage
-                    }
-                });
-                
-                document.dispatchEvent(addToCartEvent);
-                
-                // Update cart badge
-                const cartBadge = document.querySelector('.cart-badge');
-                if (cartBadge) {
-                    const currentCount = parseInt(cartBadge.textContent) || 0;
-                    cartBadge.textContent = currentCount + 1;
-                }
-            });
-        });
-    }
-    
     // Handle service filters in the Vet Care section
     const serviceFilters = document.querySelectorAll('.service-filter');
     const serviceCards = document.querySelectorAll('.service-card');
@@ -669,6 +766,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 top: appointmentForm.offsetTop - 100,
                 behavior: 'smooth'
             });
+        });
+    }
+
+    // Add hover effect to cart close button if it exists
+    const closeCartBtn = document.querySelector('.close-cart');
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#f0f0f0';
+        });
+        
+        closeCartBtn.addEventListener('mouseout', function() {
+            this.style.backgroundColor = '';
         });
     }
 }); 

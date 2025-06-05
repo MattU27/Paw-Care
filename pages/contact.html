@@ -48,16 +48,38 @@
         <div class="cart-popup-content">
             <div class="cart-header">
                 <h3>Your Cart</h3>
-                <button class="close-cart">&times;</button>
+                <button class="close-cart" style="font-size: 28px; background: none; border: none; cursor: pointer; color: #555; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s; margin-right: -10px;">&times;</button>
             </div>
             <div class="cart-items" id="cartItemsList">
                 <!-- Cart items will be added here dynamically -->
                 <div class="empty-cart-message">Your cart is empty</div>
             </div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    Total: <span id="cartTotal">$0.00</span>
+            <div class="cart-promo">
+                <p class="promo-title">Have a promo code?</p>
+                <div class="promo-input">
+                    <input type="text" id="promoCodeInput" placeholder="Enter code">
+                    <button id="applyPromoBtn">Apply</button>
                 </div>
+                <div class="first-buyer-discount">
+                    <i class="fas fa-tag discount-icon"></i>
+                    <span class="discount-text">First-time buyer? Click here for <strong>15% OFF</strong></span>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row" id="discountRow" style="display: none;">
+                    <span>Discount:</span>
+                    <span id="cartDiscount">$0.00</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <div class="cart-footer">
                 <button class="btn primary-btn checkout-btn" id="checkoutBtn">Checkout</button>
             </div>
         </div>

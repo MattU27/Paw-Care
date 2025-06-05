@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('cart-open');
         }
     }
+    window.openCart = openCart; // Expose to window
 
     // Close cart function
     function closeCart() {
@@ -60,9 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('cart-open');
         }
     }
+    window.closeCart = closeCart; // Expose to window
 
     // Cart Functionality - Use the existing functions
-    const cartButton = document.getElementById('cartButton');
+    const cartButton = document.querySelector('.cart-button');
     const cartPopup = document.getElementById('cartPopup');
     const closeCartButton = document.querySelector('.close-cart');
     
@@ -74,6 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (closeCartButton) {
             closeCartButton.addEventListener('click', closeCart);
+            
+            // Add hover effect to close button
+            closeCartButton.addEventListener('mouseover', function() {
+                this.style.backgroundColor = '#f0f0f0';
+            });
+            
+            closeCartButton.addEventListener('mouseout', function() {
+                this.style.backgroundColor = '';
+            });
         }
         
         // Close cart when clicking outside
@@ -252,9 +263,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run on scroll
     window.addEventListener('scroll', animateOnScroll);
 
-    // Cart functionality - simplified
+    // Cart data
     let cartItems = [];
-    let cartTotal = 0;
+    window.cartItems = cartItems; // Expose to window for dashboard.js to access
+    
     let cartSubtotal = 0;
     let cartCount = 0;
     let discountApplied = 0;
@@ -361,6 +373,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Listen for custom add-to-cart events from dashboard.js
+    document.addEventListener('dashboard-add-to-cart', function(e) {
+        if (e.detail) {
+            cartItems.push({
+                name: e.detail.name,
+                price: e.detail.price,
+                numericPrice: e.detail.numericPrice || parseFloat(e.detail.price.replace(/[^\d.-]/g, '')),
+                image: e.detail.image
+            });
+            
+            cartCount++;
+            updateCartPrices();
+            updateCartBadge();
+            updateCartItems();
+        }
+    });
+    
     // Apply promo code
     if (applyPromoBtn) {
         applyPromoBtn.addEventListener('click', function() {
@@ -403,76 +432,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update cart prices
     function updateCartPrices() {
-        // Calculate subtotal
-        cartSubtotal = cartItems.reduce((total, item) => total + item.numericPrice, 0);
+        cartSubtotal = 0;
         
-        // Apply discount if any
-        cartTotal = cartSubtotal - discountApplied;
-        
-        // Make sure we don't go negative
-        if (cartTotal < 0) cartTotal = 0;
-    }
-
-    // Update cart badge counter
-    function updateCartBadge() {
-        cartBadge.textContent = cartCount;
-        cartBadge.classList.add('update');
-        setTimeout(() => {
-            cartBadge.classList.remove('update');
-        }, 300);
-    }
-    
-    // Update cart items display
-    function updateCartItems() {
-        cartItemsList.innerHTML = '';
-        
-        if (cartItems.length === 0) {
-            const emptyMessage = document.createElement('div');
-            emptyMessage.classList.add('empty-cart-message');
-            emptyMessage.textContent = 'Your cart is empty';
-            cartItemsList.appendChild(emptyMessage);
-            
-            // Hide discount row when cart is empty
-            if (discountRow) discountRow.style.display = 'none';
-        } else {
-            cartItems.forEach((item, index) => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                
-                cartItem.innerHTML = `
-                    <div class="cart-item-image">
-                        <img src="${item.image}" alt="${item.name}">
-                    </div>
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">${item.price}</div>
-                    </div>
-                    <button class="cart-item-remove" data-index="${index}">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                
-                cartItemsList.appendChild(cartItem);
-                
-                // Add click handler to remove button
-                cartItem.querySelector('.cart-item-remove').addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    removeCartItem(index);
-                });
-            });
-            
-            // Show/hide discount row based on whether discount is applied
-            if (discountRow) {
-                if (discountApplied > 0) {
-                    discountRow.style.display = 'flex';
-                    if (cartDiscountElement) {
-                        cartDiscountElement.textContent = `-$${discountApplied.toFixed(2)}`;
-                    }
-                } else {
-                    discountRow.style.display = 'none';
-                }
+        cartItems.forEach(item => {
+            if (item.numericPrice) {
+                cartSubtotal += item.numericPrice;
             }
-        }
+        });
+        
+        // Calculate total after discount
+        const cartTotal = Math.max(0, cartSubtotal - discountApplied);
         
         // Update totals
         if (cartSubtotalElement) {
@@ -482,6 +451,73 @@ document.addEventListener('DOMContentLoaded', function() {
             cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
         }
     }
+    window.updateCartPrices = updateCartPrices; // Expose to window
+    
+    // Update cart badge
+    function updateCartBadge() {
+        if (cartBadge) {
+            cartBadge.textContent = cartCount;
+            
+            // Show/hide badge based on count
+            if (cartCount > 0) {
+                cartBadge.style.display = 'flex';
+            } else {
+                cartBadge.style.display = 'none';
+            }
+        }
+    }
+    window.updateCartBadge = updateCartBadge; // Expose to window
+    
+    // Update cart items
+    function updateCartItems() {
+        if (!cartItemsList) return;
+        
+        cartItemsList.innerHTML = '';
+        
+        if (cartItems.length === 0) {
+            cartItemsList.innerHTML = '<div class="empty-cart-message">Your cart is empty</div>';
+            return;
+        }
+        
+        cartItems.forEach((item, index) => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            
+            cartItemElement.innerHTML = `
+                <div class="cart-item-image">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div class="cart-item-details">
+                    <h4>${item.name}</h4>
+                    <p class="cart-item-price">${item.price}</p>
+                </div>
+                <button class="remove-item" data-index="${index}">&times;</button>
+            `;
+            
+            cartItemsList.appendChild(cartItemElement);
+        });
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                removeCartItem(index);
+            });
+        });
+        
+        // Show/hide discount row based on whether discount is applied
+        if (discountRow) {
+            if (discountApplied > 0) {
+                discountRow.style.display = 'flex';
+                if (cartDiscountElement) {
+                    cartDiscountElement.textContent = `-$${discountApplied.toFixed(2)}`;
+                }
+            } else {
+                discountRow.style.display = 'none';
+            }
+        }
+    }
+    window.updateCartItems = updateCartItems; // Expose to window
 
     // Remove item from cart
     function removeCartItem(index) {
@@ -496,6 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCartBadge();
         updateCartItems();
     }
+    window.removeCartItem = removeCartItem; // Expose to window
 
     // Custom Modal Functions
     function openModal(modalId) {

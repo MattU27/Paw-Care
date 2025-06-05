@@ -1,14 +1,1 @@
-[{
-  "_id": {
-    "$oid": "6840807436433876f6ca97e6"
-  },
-  "firstName": "John",
-  "lastName": "Matthew Banto",
-  "email": "sasukebanto@gmail.com",
-  "passwordHash": "$2a$10$c7TBKnnFLBBjgHcTOZDAKu6fNg5isffSUZ5aIXUY8TOSzLiZgGsty",
-  "role": "customer",
-  "memberSince": {
-    "$date": "2025-06-04T17:20:52.670Z"
-  },
-  "isPremium": false
-}]
+[]

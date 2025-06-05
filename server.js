@@ -25,24 +25,10 @@ async function connectToMongo() {
         console.log("Connected to MongoDB");
         db = client.db("pawcare");
         
-        // Clear existing users collection
-        await clearUsers();
-        
         return client;
     } catch (err) {
         console.error("Failed to connect to MongoDB:", err);
         process.exit(1);
-    }
-}
-
-// Clear users collection
-async function clearUsers() {
-    try {
-        // Clear existing users
-        await db.collection('users').deleteMany({});
-        console.log("All users deleted from the database");
-    } catch (err) {
-        console.error("Error clearing users:", err);
     }
 }
 
